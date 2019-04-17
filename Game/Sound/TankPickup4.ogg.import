@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/TankPickup4.ogg-c6081dc0d38be34e02658aa13b8d993f.oggstr"
+
+[deps]
+
+source_file="res://Sound/TankPickup4.ogg"
+dest_files=[ "res://.import/TankPickup4.ogg-c6081dc0d38be34e02658aa13b8d993f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Antti Luode - Nuclear Missles.ogg-77a723a62224122b3473428721fccf50.oggstr"
+
+[deps]
+
+source_file="res://Sound/Antti Luode - Nuclear Missles.ogg"
+dest_files=[ "res://.import/Antti Luode - Nuclear Missles.ogg-77a723a62224122b3473428721fccf50.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

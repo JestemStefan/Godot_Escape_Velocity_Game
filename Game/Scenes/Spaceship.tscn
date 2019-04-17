@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/Spaceship.gd" type="Script" id=1]
+[ext_resource path="res://Sprite/Ship_Sprite_noBack.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Smoke_Particle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Smoke_Particle_Big.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sound/Rocket_normal.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Sound/TankPickup4.ogg" type="AudioStream" id=6]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 70.5119
+height = 288.399
+
+[node name="SpaceShip" type="KinematicBody2D"]
+position = Vector2( 752.403, 369.876 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 1 )
+
+[node name="SpaceShip_Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="SmallEngineSmoke1" parent="SpaceShip_Sprite" instance=ExtResource( 3 )]
+position = Vector2( -196.977, -82.7654 )
+scale = Vector2( 0.5, 0.5 )
+lifetime = 10.0
+preprocess = 0.0
+
+[node name="SmallEngineSmoke2" parent="SpaceShip_Sprite" instance=ExtResource( 3 )]
+position = Vector2( -193.1, 90.4102 )
+scale = Vector2( 0.5, 0.5 )
+lifetime = 10.0
+preprocess = 0.0
+
+[node name="BigEngineSmoke" parent="SpaceShip_Sprite" instance=ExtResource( 4 )]
+position = Vector2( -213.75, 3.75659 )
+scale = Vector2( 0.5, 0.5 )
+lifetime = 10.0
+preprocess = 0.0
+
+[node name="ShipCollider" type="CollisionShape2D" parent="."]
+position = Vector2( -12.8878, -6.10352e-005 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="EngineSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = -20.0
+pitch_scale = 0.5
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+

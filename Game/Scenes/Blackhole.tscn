@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+// Center of the black hole in normalized screen coordinates
+uniform float centerX = 0.5;
+uniform float centerY = 0.5;
+
+// Some factor to set the size of the black hole animating over time,
+// you can set it to a constant value really
+void fragment(){
+	
+
+float p = 0.01 +abs(1.0+cos(0.4*TIME)) * 0.001;
+vec2 center = vec2(centerX,centerY);
+vec2 diff = center - UV;
+float d = length(diff);
+vec2 dir = normalize(diff);
+
+// Distort the texture coordinates of the screen:
+// Warning, unchecked experimental formula.
+// the main idea is that we want to \"attract\" light to the center the closer we are to it,
+// which will distort UVs towards the center of the black hole.
+// This appears to work well, and in fact looks like gravity attraction formula applied to pixels
+vec2 uv = UV + dir * (p / (d*d + 0.1));
+
+// Finally, get the color of the pixel at the distorted location,
+// and output it at the current location.
+vec4 col = texture(SCREEN_TEXTURE,uv);
+COLOR.rgba = col;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/centerX = 0.5
+shader_param/centerY = 0.5
+
+[node name="Blackhole" type="TextureRect"]
+material = SubResource( 2 )
+margin_left = 658.0
+margin_top = 282.0
+margin_right = 1267.0
+margin_bottom = 871.0
+texture = ExtResource( 1 )
+expand = true
+
