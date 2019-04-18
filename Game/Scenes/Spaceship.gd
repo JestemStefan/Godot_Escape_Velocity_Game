@@ -49,14 +49,17 @@ func _physics_process(delta):
 		   $PickupSound.play()
 	
 func check_pos():
-	if position.x<100:
+	"""if position.x<100:
 		position.x=100
 	if position.x>1900:
 		position.x=1900
 	if position.y<40:
 		position.y=40
 	if position.y>1000:
-		position.y=1000
+		position.y=1000"""
+	player.position.x = clamp(player.position.x, 100, 1900)
+	player.position.y = clamp(player.position.y, 40, 1000)
+
 
 func afterburner():
 	engine_mode = 2
