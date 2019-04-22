@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ShipDestruction.ogg-3d9ea382459417d747e6efbd2d3d98be.oggstr"
+
+[deps]
+
+source_file="res://Sound/ShipDestruction.ogg"
+dest_files=[ "res://.import/ShipDestruction.ogg-3d9ea382459417d747e6efbd2d3d98be.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
