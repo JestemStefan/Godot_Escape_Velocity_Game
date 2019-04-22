@@ -1,29 +1,249 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=37 format=2]
 
-[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Menu_Quit_normal.png" type="Texture" id=1]
-[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Menu_Quit_pressed.png" type="Texture" id=2]
-[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Menu_Quit_hover.png" type="Texture" id=3]
-[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Menu_StartGame_normal.png" type="Texture" id=4]
-[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Menu_StartGame_pressed.png" type="Texture" id=5]
-[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Menu_StartGame_hover.png" type="Texture" id=6]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Start_Game/Menu_StartGame_normal.png" type="Texture" id=1]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Start_Game/Menu_StartGame_pressed.png" type="Texture" id=2]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Start_Game/Menu_StartGame_hover.png" type="Texture" id=3]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Options/Menu_Options_normal.png" type="Texture" id=4]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Options/Menu_Options_pressed.png" type="Texture" id=5]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Options/Menu_Options_hover.png" type="Texture" id=6]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Credits/Menu_Credits_normal.png" type="Texture" id=7]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Credits/Menu_Credits_pressed.png" type="Texture" id=8]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Credits/Menu_Credits_hover.png" type="Texture" id=9]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Quit/Menu_Quit_normal.png" type="Texture" id=10]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Quit/Menu_Quit_pressed.png" type="Texture" id=11]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Quit/Menu_Quit_hover.png" type="Texture" id=12]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Options/Minus_normal.png" type="Texture" id=13]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Options/Minus_pressed.png" type="Texture" id=14]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Options/Minus_hover.png" type="Texture" id=15]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Options/Music_vol/Options_MusicVol_empty.png" type="Texture" id=16]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Options/Music_vol/Options_MusicVol_full.png" type="Texture" id=17]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Options/Plus_normal.png" type="Texture" id=18]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Options/Plus_pressed.png" type="Texture" id=19]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Options/Plus_hover.png" type="Texture" id=20]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Options/SFX_vol/Options_SFXVol_empty.png" type="Texture" id=21]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Options/SFX_vol/Options_SFXVol_full.png" type="Texture" id=22]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Difficulty/Difficulty.png" type="Texture" id=23]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Difficulty/Easy/Difficulty_Easy_normal.png" type="Texture" id=24]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Difficulty/Easy/Difficulty_Easy_pressed.png" type="Texture" id=25]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Difficulty/Easy/Difficulty_Easy_hover.png" type="Texture" id=26]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Difficulty/Medium/Difficulty_Medium_normal.png" type="Texture" id=27]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Difficulty/Medium/Difficulty_Medium_pressed.png" type="Texture" id=28]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Difficulty/Medium/Difficulty_Medium_hover.png" type="Texture" id=29]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Difficulty/Hard/Difficulty_Hard_normal.png" type="Texture" id=30]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Difficulty/Hard/Difficulty_Hard_pressed.png" type="Texture" id=31]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Difficulty/Hard/Difficulty_Hard_hover.png" type="Texture" id=32]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Difficulty/Impossible/Difficulty_Impossible_normal.png" type="Texture" id=33]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Difficulty/Impossible/Difficulty_Impossible_pressed.png" type="Texture" id=34]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Difficulty/Impossible/Difficulty_Impossible_hover.png" type="Texture" id=35]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Credits/Credits.png" type="Texture" id=36]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="QuitButton" type="TextureButton" parent="."]
-margin_top = 400.0
-margin_right = 1600.0
-margin_bottom = 800.0
+[node name="MainMenuScreen" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MenuButtons" type="VBoxContainer" parent="MainMenuScreen"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 150.0
+margin_top = -40.0
+margin_right = 950.0
+margin_bottom = 772.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="StartButton" type="TextureButton" parent="MainMenuScreen/MenuButtons"]
+margin_right = 800.0
+margin_bottom = 200.0
 texture_normal = ExtResource( 1 )
 texture_pressed = ExtResource( 2 )
 texture_hover = ExtResource( 3 )
 
-[node name="StartGameButton" type="TextureButton" parent="."]
-margin_top = 0.4
-margin_right = 1600.0
-margin_bottom = 400.4
+[node name="OptionsButton" type="TextureButton" parent="MainMenuScreen/MenuButtons"]
+margin_top = 204.0
+margin_right = 800.0
+margin_bottom = 404.0
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 6 )
+
+[node name="CreditsButton" type="TextureButton" parent="MainMenuScreen/MenuButtons"]
+margin_top = 408.0
+margin_right = 800.0
+margin_bottom = 608.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 9 )
+
+[node name="QuitButton" type="TextureButton" parent="MainMenuScreen/MenuButtons"]
+margin_top = 612.0
+margin_right = 800.0
+margin_bottom = 812.0
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 11 )
+texture_hover = ExtResource( 12 )
+
+[node name="OptionMenu" type="VBoxContainer" parent="MainMenuScreen"]
+editor/display_folded = true
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -252.97
+margin_top = -492.29
+margin_right = 1355.03
+margin_bottom = 23.7102
+rect_scale = Vector2( 0.5, 0.5 )
+alignment = 1
+
+[node name="MusicVol" type="HBoxContainer" parent="MainMenuScreen/OptionMenu"]
+editor/display_folded = true
+margin_right = 1608.0
+margin_bottom = 256.0
+
+[node name="MinusCont" type="CenterContainer" parent="MainMenuScreen/OptionMenu/MusicVol"]
+editor/display_folded = true
+margin_right = 200.0
+margin_bottom = 256.0
+
+[node name="VolMinus" type="TextureButton" parent="MainMenuScreen/OptionMenu/MusicVol/MinusCont"]
+margin_top = 28.0
+margin_right = 200.0
+margin_bottom = 228.0
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 15 )
+stretch_mode = 2
+
+[node name="MusicCont" type="MarginContainer" parent="MainMenuScreen/OptionMenu/MusicVol"]
+editor/display_folded = true
+margin_left = 204.0
+margin_right = 1404.0
+margin_bottom = 256.0
+
+[node name="MusicVolBar" type="TextureProgress" parent="MainMenuScreen/OptionMenu/MusicVol/MusicCont"]
+margin_right = 1200.0
+margin_bottom = 256.0
+min_value = -20.0
+max_value = 20.0
+step = 10.0
+texture_under = ExtResource( 16 )
+texture_progress = ExtResource( 17 )
+
+[node name="PlusCont" type="CenterContainer" parent="MainMenuScreen/OptionMenu/MusicVol"]
+editor/display_folded = true
+margin_left = 1408.0
+margin_right = 1608.0
+margin_bottom = 256.0
+
+[node name="VolPlus" type="TextureButton" parent="MainMenuScreen/OptionMenu/MusicVol/PlusCont"]
+margin_top = 28.0
+margin_right = 200.0
+margin_bottom = 228.0
+texture_normal = ExtResource( 18 )
+texture_pressed = ExtResource( 19 )
+texture_hover = ExtResource( 20 )
+stretch_mode = 2
+
+[node name="SFXVol" type="HBoxContainer" parent="MainMenuScreen/OptionMenu"]
+margin_top = 260.0
+margin_right = 1608.0
+margin_bottom = 516.0
+
+[node name="MinusCont" type="CenterContainer" parent="MainMenuScreen/OptionMenu/SFXVol"]
+margin_right = 200.0
+margin_bottom = 256.0
+
+[node name="SFXMinus" type="TextureButton" parent="MainMenuScreen/OptionMenu/SFXVol/MinusCont"]
+margin_top = 28.0
+margin_right = 200.0
+margin_bottom = 228.0
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 15 )
+stretch_mode = 2
+
+[node name="SFXCont" type="MarginContainer" parent="MainMenuScreen/OptionMenu/SFXVol"]
+margin_left = 204.0
+margin_right = 1404.0
+margin_bottom = 256.0
+
+[node name="SFXVolBar" type="TextureProgress" parent="MainMenuScreen/OptionMenu/SFXVol/SFXCont"]
+margin_right = 1200.0
+margin_bottom = 256.0
+min_value = -20.0
+max_value = 20.0
+step = 10.0
+texture_under = ExtResource( 21 )
+texture_progress = ExtResource( 22 )
+
+[node name="PlusCont" type="CenterContainer" parent="MainMenuScreen/OptionMenu/SFXVol"]
+margin_left = 1408.0
+margin_right = 1608.0
+margin_bottom = 256.0
+
+[node name="SFXPlus" type="TextureButton" parent="MainMenuScreen/OptionMenu/SFXVol/PlusCont"]
+margin_top = 28.0
+margin_right = 200.0
+margin_bottom = 228.0
+texture_normal = ExtResource( 18 )
+texture_pressed = ExtResource( 19 )
+texture_hover = ExtResource( 20 )
+stretch_mode = 2
+
+[node name="DifficultyMenu" type="VBoxContainer" parent="MainMenuScreen"]
+editor/display_folded = true
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 788.9
+margin_top = -213.55
+margin_right = 1988.9
+margin_bottom = 1082.45
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="ChooseDifficulty" type="TextureRect" parent="MainMenuScreen/DifficultyMenu"]
+margin_right = 1200.0
+margin_bottom = 256.0
+texture = ExtResource( 23 )
+
+[node name="Easy" type="TextureButton" parent="MainMenuScreen/DifficultyMenu"]
+margin_top = 260.0
+margin_right = 1200.0
+margin_bottom = 516.0
+texture_normal = ExtResource( 24 )
+texture_pressed = ExtResource( 25 )
+texture_hover = ExtResource( 26 )
+
+[node name="Medium" type="TextureButton" parent="MainMenuScreen/DifficultyMenu"]
+margin_top = 520.0
+margin_right = 1200.0
+margin_bottom = 776.0
+texture_normal = ExtResource( 27 )
+texture_pressed = ExtResource( 28 )
+texture_hover = ExtResource( 29 )
+
+[node name="Hard" type="TextureButton" parent="MainMenuScreen/DifficultyMenu"]
+margin_top = 780.0
+margin_right = 1200.0
+margin_bottom = 1036.0
+texture_normal = ExtResource( 30 )
+texture_pressed = ExtResource( 31 )
+texture_hover = ExtResource( 32 )
+
+[node name="Impossible" type="TextureButton" parent="MainMenuScreen/DifficultyMenu"]
+margin_top = 1040.0
+margin_right = 1200.0
+margin_bottom = 1296.0
+texture_normal = ExtResource( 33 )
+texture_pressed = ExtResource( 34 )
+texture_hover = ExtResource( 35 )
+
+[node name="CreditsMenu" type="TextureRect" parent="MainMenuScreen"]
+margin_left = 794.031
+margin_top = 423.323
+margin_right = 1188.03
+margin_bottom = 922.323
+texture = ExtResource( 36 )
 

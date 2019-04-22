@@ -1,9 +1,10 @@
 extends KinematicBody2D
 
+var inputActive = true
 var speed = 750
 var velocity = Vector2()
 var current_velocity = 10000
-var escape_velocity = 40320
+#var escape_velocity = 40320
 var fuel = 100
 var fuel_usage = 3.0
 var engine_mode = 1
@@ -12,9 +13,14 @@ onready var fuel_bar = get_parent().get_node("UI/fuel_bar")
 onready var speed_bar = get_parent().get_node("UI/speed_meter")
 onready var speed_digits = get_parent().get_node("UI/speed_digits_label/speed_digits_number")
 onready var speed_digits_label = get_parent().get_node("UI/speed_digits_label")
+onready var GUI = get_parent().get_node("UI")
+onready var Spawner = get_parent().get_node("Spawner")
+onready var Game = $"/root/Game"
 
 func _ready():
 	$EngineSound.playing = true
+	inputActive = true
+	
 
 func get_input():
     # Detect up/down/left/right keystate and only move when pressed.
@@ -35,18 +41,32 @@ func get_input():
 	    normal_burn()
 
 func _physics_process(delta):
+	if current_velocity>=40320:
+		Win()
+	elif current_velocity<=0:
+		Lose()
+	
 	#print(current_velocity)
 	check_pos()
-	get_input()
-	fuel_script(delta)
-	escape()
+	if inputActive:
+		get_input()
+		fuel_script(delta)
+		escape()
+	
+	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
-		collision.collider.queue_free()
 		if collision.collider.get("pickable")==true:
-		   print(current_velocity) 
+		   #print(current_velocity) 
 		   fuel+=20
 		   $PickupSound.play()
+		elif collision.collider.get("pickable")==false:
+			current_velocity -=1000*round(collision.collider.scale.x)
+			$CollisionSound.play()
+			$SpaceShip_Sprite/CollisionEffect.restart()
+			$SpaceShip_Sprite/CollisionEffect.emitting = true
+			
+		collision.collider.queue_free()
 	
 func check_pos():
 	"""if position.x<100:
@@ -57,9 +77,16 @@ func check_pos():
 		position.y=40
 	if position.y>1000:
 		position.y=1000"""
-	player.position.x = clamp(player.position.x, 100, 1900)
-	player.position.y = clamp(player.position.y, 40, 1000)
-
+	if inputActive:
+		position.x = clamp(position.x, 100, 1900)
+		position.y = clamp(position.y, 40, 1000)
+	elif !inputActive and position.x>2200:
+		Game.win = true
+		hide()
+	elif !inputActive and position.x<-200:
+		hide()
+		Game.lose = true
+		
 
 func afterburner():
 	engine_mode = 2
@@ -120,6 +147,15 @@ func fuel_script(delta):
 	
 	fuel_bar.set_value(fuel)
 	
+	if !$FuelAlarm.playing and fuel<10:
+		$FuelAlarm.play()
+		GUI.set("fuel_critical",true)
+		#print("fuel low")
+	elif $FuelAlarm.playing and fuel>=10:
+		 $FuelAlarm.stop()
+		 GUI.set("fuel_critical",false)
+		 #print("fuel high")
+	
 	
 func escape():
 	if engine_mode == 2:
@@ -138,5 +174,30 @@ func escape():
 	speed_digits.set_text(String(current_velocity) + " km/h")
 	speed_digits_label.set_position(Vector2(80,posY))
 	speed_bar.set_value(current_velocity)
+	
+	
+	if !$VelocityAlarm.playing and current_velocity<9000:
+		$VelocityAlarm.play()
+		GUI.set("velocity_critical",true)
+	elif $VelocityAlarm.playing and current_velocity>=9000:
+		$VelocityAlarm.stop()
+		GUI.set("velocity_critical",false)
+	
+	
+func Win():
+	speed_bar.hide()
+	speed_digits_label.hide()
+	fuel_bar.hide()
+	Spawner.spawnerOn = false
+	inputActive = false
+	position.x +=10
 	#print(current_velocity)
+
+func Lose():
+	speed_bar.hide()
+	speed_digits_label.hide()
+	fuel_bar.hide()
+	Spawner.spawnerOn = false
+	inputActive = false
+	position.x -=10
 	

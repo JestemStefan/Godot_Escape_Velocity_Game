@@ -1,0 +1,215 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/MainMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/MainMenu.gd" type="Script" id=3]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/MainMenuBackGround.png" type="Texture" id=4]
+[ext_resource path="res://Sound/MouseOver.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Sound/Click.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Sound/MenuMusic.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Loga.png" type="Texture" id=8]
+[ext_resource path="res://Sprite/UI_Sprite/Paused.png" type="Texture" id=9]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Quit/Menu_Quit_normal.png" type="Texture" id=10]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Quit/Menu_Quit_pressed.png" type="Texture" id=11]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/Quit/Menu_Quit_hover.png" type="Texture" id=12]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/InGameMenu/YouWin.png" type="Texture" id=13]
+[ext_resource path="res://Sprite/UI_Sprite/Main_Menu/InGameMenu/YouLose.png" type="Texture" id=14]
+
+[node name="Game" type="Node"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="MainMenu" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="MainMenuScreen" parent="MainMenu" index="0"]
+texture = ExtResource( 4 )
+
+[node name="OptionMenu" parent="MainMenu/MainMenuScreen" index="1"]
+visible = false
+
+[node name="MinusCont" parent="MainMenu/MainMenuScreen/OptionMenu/MusicVol" index="0"]
+editor/display_folded = false
+
+[node name="PlusCont" parent="MainMenu/MainMenuScreen/OptionMenu/MusicVol" index="2"]
+editor/display_folded = false
+
+[node name="SFXVol" parent="MainMenu/MainMenuScreen/OptionMenu" index="1"]
+editor/display_folded = true
+
+[node name="SFXCont" parent="MainMenu/MainMenuScreen/OptionMenu/SFXVol" index="1"]
+editor/display_folded = true
+
+[node name="DifficultyMenu" parent="MainMenu/MainMenuScreen" index="2"]
+visible = false
+
+[node name="CreditsMenu" parent="MainMenu/MainMenuScreen" index="3"]
+visible = false
+margin_left = 759.543
+margin_top = 426.404
+margin_right = 1153.54
+margin_bottom = 925.404
+
+[node name="Hoversound" type="AudioStreamPlayer2D" parent="MainMenu"]
+stream = ExtResource( 5 )
+
+[node name="PressedSound" type="AudioStreamPlayer2D" parent="MainMenu"]
+stream = ExtResource( 6 )
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="MainMenu"]
+stream = ExtResource( 7 )
+volume_db = -20.0
+attenuation = 0.707107
+
+[node name="Loga" type="Sprite" parent="MainMenu"]
+position = Vector2( 1706.43, 764.128 )
+texture = ExtResource( 8 )
+
+[node name="Pause" type="VBoxContainer" parent="."]
+editor/display_folded = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -304.0
+margin_right = 400.0
+margin_bottom = 304.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 406.001, 314.728 )
+
+[node name="Pause" type="TextureRect" parent="Pause"]
+margin_right = 800.0
+margin_bottom = 200.0
+texture = ExtResource( 9 )
+
+[node name="Quit" type="TextureButton" parent="Pause"]
+margin_top = 204.0
+margin_right = 800.0
+margin_bottom = 404.0
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 11 )
+texture_hover = ExtResource( 12 )
+
+[node name="Hoversound2" type="AudioStreamPlayer2D" parent="Pause"]
+position = Vector2( -1526, -786.728 )
+scale = Vector2( 2, 2 )
+stream = ExtResource( 5 )
+
+[node name="PressedSound2" type="AudioStreamPlayer2D" parent="Pause"]
+position = Vector2( -1526, -786.728 )
+scale = Vector2( 2, 2 )
+stream = ExtResource( 6 )
+
+[node name="YouWin" type="VBoxContainer" parent="."]
+editor/display_folded = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -304.0
+margin_right = 400.0
+margin_bottom = 304.0
+rect_scale = Vector2( 0.610267, 0.578292 )
+rect_pivot_offset = Vector2( 406.001, 314.728 )
+
+[node name="Win" type="TextureRect" parent="YouWin"]
+margin_right = 800.0
+margin_bottom = 200.0
+texture = ExtResource( 13 )
+
+[node name="QuitCont" type="CenterContainer" parent="YouWin"]
+margin_top = 204.0
+margin_right = 800.0
+margin_bottom = 404.0
+
+[node name="Quit" type="TextureButton" parent="YouWin/QuitCont"]
+margin_right = 800.0
+margin_bottom = 200.0
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 11 )
+texture_hover = ExtResource( 12 )
+stretch_mode = 3
+
+[node name="Hoversound2" type="AudioStreamPlayer2D" parent="YouWin"]
+position = Vector2( -1526, -786.728 )
+scale = Vector2( 2, 2 )
+stream = ExtResource( 5 )
+
+[node name="PressedSound2" type="AudioStreamPlayer2D" parent="YouWin"]
+position = Vector2( -1526, -786.728 )
+scale = Vector2( 2, 2 )
+stream = ExtResource( 6 )
+
+[node name="YouLose" type="VBoxContainer" parent="."]
+editor/display_folded = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -304.0
+margin_right = 400.0
+margin_bottom = 304.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 406.001, 314.728 )
+
+[node name="Lose" type="TextureRect" parent="YouLose"]
+margin_right = 800.0
+margin_bottom = 200.0
+texture = ExtResource( 14 )
+
+[node name="Quit" type="TextureButton" parent="YouLose"]
+margin_top = 204.0
+margin_right = 800.0
+margin_bottom = 404.0
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 11 )
+texture_hover = ExtResource( 12 )
+
+[node name="Hoversound2" type="AudioStreamPlayer2D" parent="YouLose"]
+position = Vector2( -1526, -786.728 )
+scale = Vector2( 2, 2 )
+stream = ExtResource( 5 )
+
+[node name="PressedSound2" type="AudioStreamPlayer2D" parent="YouLose"]
+position = Vector2( -1526, -786.728 )
+scale = Vector2( 2, 2 )
+stream = ExtResource( 6 )
+
+[connection signal="button_down" from="MainMenu/MainMenuScreen/MenuButtons/StartButton" to="MainMenu" method="_on_StartButton_button_down"]
+[connection signal="mouse_entered" from="MainMenu/MainMenuScreen/MenuButtons/StartButton" to="MainMenu" method="_on_StartButton_mouse_entered"]
+[connection signal="button_down" from="MainMenu/MainMenuScreen/MenuButtons/OptionsButton" to="MainMenu" method="_on_OptionsButton_button_down"]
+[connection signal="mouse_entered" from="MainMenu/MainMenuScreen/MenuButtons/OptionsButton" to="MainMenu" method="_on_OptionsButton_mouse_entered"]
+[connection signal="button_down" from="MainMenu/MainMenuScreen/MenuButtons/CreditsButton" to="MainMenu" method="_on_CreditsButton_button_down"]
+[connection signal="mouse_entered" from="MainMenu/MainMenuScreen/MenuButtons/CreditsButton" to="MainMenu" method="_on_CreditsButton_mouse_entered"]
+[connection signal="button_down" from="MainMenu/MainMenuScreen/MenuButtons/QuitButton" to="MainMenu" method="_on_QuitButton_button_down"]
+[connection signal="mouse_entered" from="MainMenu/MainMenuScreen/MenuButtons/QuitButton" to="MainMenu" method="_on_QuitButton_mouse_entered"]
+[connection signal="button_down" from="MainMenu/MainMenuScreen/OptionMenu/MusicVol/MinusCont/VolMinus" to="MainMenu" method="_on_VolMinus_button_down"]
+[connection signal="mouse_entered" from="MainMenu/MainMenuScreen/OptionMenu/MusicVol/MinusCont/VolMinus" to="MainMenu" method="_on_VolMinus_mouse_entered"]
+[connection signal="button_down" from="MainMenu/MainMenuScreen/OptionMenu/MusicVol/PlusCont/VolPlus" to="MainMenu" method="_on_VolPlus_button_down"]
+[connection signal="mouse_entered" from="MainMenu/MainMenuScreen/OptionMenu/MusicVol/PlusCont/VolPlus" to="MainMenu" method="_on_VolPlus_mouse_entered"]
+[connection signal="button_down" from="MainMenu/MainMenuScreen/OptionMenu/SFXVol/MinusCont/SFXMinus" to="MainMenu" method="_on_SFXMinus_button_down"]
+[connection signal="mouse_entered" from="MainMenu/MainMenuScreen/OptionMenu/SFXVol/MinusCont/SFXMinus" to="MainMenu" method="_on_SFXMinus_mouse_entered"]
+[connection signal="button_down" from="MainMenu/MainMenuScreen/OptionMenu/SFXVol/PlusCont/SFXPlus" to="MainMenu" method="_on_SFXPlus_button_down"]
+[connection signal="mouse_entered" from="MainMenu/MainMenuScreen/OptionMenu/SFXVol/PlusCont/SFXPlus" to="MainMenu" method="_on_SFXPlus_mouse_entered"]
+[connection signal="button_down" from="MainMenu/MainMenuScreen/DifficultyMenu/Easy" to="MainMenu" method="_on_Easy_button_down"]
+[connection signal="mouse_entered" from="MainMenu/MainMenuScreen/DifficultyMenu/Easy" to="MainMenu" method="_on_Easy_mouse_entered"]
+[connection signal="button_down" from="MainMenu/MainMenuScreen/DifficultyMenu/Medium" to="MainMenu" method="_on_Medium_button_down"]
+[connection signal="mouse_entered" from="MainMenu/MainMenuScreen/DifficultyMenu/Medium" to="MainMenu" method="_on_Medium_mouse_entered"]
+[connection signal="button_down" from="MainMenu/MainMenuScreen/DifficultyMenu/Hard" to="MainMenu" method="_on_Hard_button_down"]
+[connection signal="mouse_entered" from="MainMenu/MainMenuScreen/DifficultyMenu/Hard" to="MainMenu" method="_on_Hard_mouse_entered"]
+[connection signal="button_down" from="MainMenu/MainMenuScreen/DifficultyMenu/Impossible" to="MainMenu" method="_on_Impossible_button_down"]
+[connection signal="mouse_entered" from="MainMenu/MainMenuScreen/DifficultyMenu/Impossible" to="MainMenu" method="_on_Impossible_mouse_entered"]
+[connection signal="button_down" from="Pause/Quit" to="." method="_on_Quit_button_down"]
+[connection signal="mouse_entered" from="Pause/Quit" to="." method="_on_Quit_mouse_entered"]
+[connection signal="button_down" from="YouWin/QuitCont/Quit" to="." method="_on_Quit_button_down"]
+[connection signal="mouse_entered" from="YouWin/QuitCont/Quit" to="." method="_on_Quit_mouse_entered"]
+[connection signal="button_down" from="YouLose/Quit" to="." method="_on_Quit_button_down"]
+[connection signal="mouse_entered" from="YouLose/Quit" to="." method="_on_Quit_mouse_entered"]
+
+[editable path="MainMenu"]

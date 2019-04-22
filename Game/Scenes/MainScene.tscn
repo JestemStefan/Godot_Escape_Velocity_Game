@@ -4,17 +4,23 @@
 [ext_resource path="res://Scenes/Spaceship.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Spawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/GUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Sound/Antti Luode - Nuclear Missles.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Sound/BlackHole4.ogg" type="AudioStream" id=5]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
+onready var MusicVol = get_parent().get(\"SoundVol\")
+onready var SFXVol = get_parent().get(\"SFXVol\")
+onready var Difficulty = get_parent().get(\"DifficultyLevel\")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$BackgroundMusic.volume_db += MusicVol
+	$SpaceShip/EngineSound.volume_db += SFXVol
+	$SpaceShip/PickupSound.volume_db += SFXVol
+	$SpaceShip/CollisionSound.volume_db+=SFXVol
+	$Spawner.difficulty = Difficulty
+	
 	$BackgroundMusic.playing = true
 	
 
@@ -26,30 +32,39 @@ func _ready():
 [sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("BackgroundNode/Viewport")
 
-[node name="MainScene" type="Node"]
+[node name="GameScene" type="Node"]
+pause_mode = 1
 script = SubResource( 1 )
 
 [node name="BackgroundNode" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
 
 [node name="Blackhole" parent="BackgroundNode" index="2"]
 texture = SubResource( 2 )
 
 [node name="SpaceShip" parent="." instance=ExtResource( 2 )]
+position = Vector2( 945.986, 533.465 )
 
 [node name="Spawner" parent="." instance=ExtResource( 3 )]
 
 [node name="H2_Timer" type="Timer" parent="Spawner"]
 wait_time = 1.65
 
-[node name="UI" parent="." instance=ExtResource( 4 )]
+[node name="Asteroid_Timer" type="Timer" parent="Spawner"]
+wait_time = 1.65
 
-[node name="speed_meter" parent="UI" index="1"]
-value = 70.0
+[node name="Asteroid_Timer2" type="Timer" parent="Spawner"]
+wait_time = 1.65
+
+[node name="UI" parent="." instance=ExtResource( 4 )]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+volume_db = -10.0
 
 [connection signal="timeout" from="Spawner/H2_Timer" to="Spawner" method="_on_H2_Timer_timeout"]
+[connection signal="timeout" from="Spawner/Asteroid_Timer" to="Spawner" method="_on_Asteroid_Timer_timeout"]
+[connection signal="timeout" from="Spawner/Asteroid_Timer2" to="Spawner" method="_on_Asteroid_Timer2_timeout"]
 
 [editable path="BackgroundNode"]
 
